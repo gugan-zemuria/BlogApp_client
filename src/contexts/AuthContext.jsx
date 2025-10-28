@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
       try {
         const storedToken = localStorage.getItem('authToken');
         console.log('AuthContext: Initializing auth with token:', storedToken ? 'exists' : 'none');
-        
+
         if (storedToken && AuthService.isTokenValid(storedToken)) {
           console.log('AuthContext: Token is valid, getting user data...');
           const userData = await AuthService.getCurrentUser();
