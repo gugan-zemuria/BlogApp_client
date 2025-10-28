@@ -1,0 +1,41 @@
+{
+  "name": "posts-management-client",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "React client for posts management application with modern UI and API integration",
+  "author": "AI-Assisted Development",
+  "keywords": ["react", "posts", "management", "vite", "axios"],
+  "proxy": "http://localhost:3000",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "vercel-build": "vite build"
+  },
+  "dependencies": {
+    "axios": "^1.12.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.9.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.36.0",
+    "@types/react": "^19.1.16",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.4",
+    "eslint": "^9.36.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.22",
+    "globals": "^16.4.0",
+    "vite": "^7.1.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "local"
+  }
+}
