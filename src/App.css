@@ -99,10 +99,10 @@ body {
 
 .error-message {
   background: #fee;
-  color: #c33;
+  color: red;
   padding: 1rem;
   border-radius: 8px;
-  border-left: 4px solid #c33;
+  border-left: 4px solid red;
   margin-bottom: 1rem;
 }
 
