@@ -8,7 +8,7 @@
   "keywords": ["react", "posts", "management", "vite", "axios"],
   "proxy": "http://localhost:3000",
   "engines": {
-    "node": "18.x"
+    "node": "22.x"
   },
   "scripts": {
     "dev": "vite",
