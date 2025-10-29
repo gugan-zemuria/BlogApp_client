@@ -4,7 +4,8 @@ const config = {
 
 // Debug logging
 console.log('Environment:', import.meta.env.MODE);
-console.log('API URL:', config.API_URL);
+console.log('VITE_API_URL from env:', import.meta.env.VITE_API_URL);
+console.log('Final API URL:', config.API_URL);
 console.log('All env vars:', import.meta.env);
 
 export default config;

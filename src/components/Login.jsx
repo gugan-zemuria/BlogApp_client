@@ -91,7 +91,9 @@ function Login() {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = AuthService.getGoogleAuthUrl();
+    const googleAuthUrl = AuthService.getGoogleAuthUrl();
+    console.log('Google Auth URL:', googleAuthUrl);
+    window.location.href = googleAuthUrl;
   };
 
   return (

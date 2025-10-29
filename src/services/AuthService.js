@@ -80,16 +80,16 @@ class AuthService {
 
   isTokenValid(token) {
     if (!token) return false;
-    
+
     try {
       // Basic JWT structure check
       const parts = token.split('.');
       if (parts.length !== 3) return false;
-      
+
       // Decode payload to check expiry
       const payload = JSON.parse(atob(parts[1]));
       const currentTime = Date.now() / 1000;
-      
+
       return payload.exp > currentTime;
     } catch (error) {
       return false;

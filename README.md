@@ -1,240 +1,304 @@
 # Posts Management Client
 
-A modern React client application for posts management with a clean UI, API integration, and responsive design.
+A modern React application for managing posts with authentication, built with Vite and featuring a clean, responsive UI.
 
-## Features
+## 🚀 Features
 
-- **Modern React** with hooks and functional components
-- **Responsive Design** with clean, intuitive UI
-- **API Integration** with Axios for HTTP requests
-- **Routing** with React Router DOM
-- **Fast Development** with Vite build tool
-- **Code Quality** with ESLint configuration
-- **Deployment Ready** with Vercel configuration
+- **User Authentication**: Login/signup with JWT tokens
+- **Google OAuth**: Social login integration
+- **Posts Management**: Create, view, edit, and delete posts
+- **Protected Routes**: Secure navigation with route guards
+- **Responsive Design**: Mobile-friendly interface
+- **Real-time Updates**: Automatic refresh on post creation
+- **Form Validation**: Client-side validation with server sync
 
-## Tech Stack
+## 🛠 Tech Stack
 
-- **Frontend Framework**: React 19.1.1
+- **Framework**: React 19.1.1
 - **Build Tool**: Vite 7.1.7
-- **HTTP Client**: Axios
-- **Routing**: React Router DOM
+- **Routing**: React Router DOM 7.9.4
+- **HTTP Client**: Axios 1.12.2
 - **Styling**: CSS3 with modern features
 - **Linting**: ESLint with React plugins
-- **Development**: Hot Module Replacement (HMR)
 
-## Prerequisites
+## 📋 Prerequisites
 
-- Node.js (version 16 or higher)
-- npm or yarn
-- Running backend server (see server README)
+- Node.js 22.x or higher
+- Running Posts API Server (see server README)
 
-## Installation
+## 🔧 Installation
 
-1. Clone the repository and navigate to the client directory:
-```bash
-cd client
-```
+1. **Navigate to client directory**
+   ```bash
+   cd client
+   ```
 
-2. Install dependencies:
-```bash
-npm install
-```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-3. Set up environment variables by creating a `.env` file:
-```bash
-cp .env.example .env
-```
+3. **Environment Setup**
+   Create a `.env` file:
+   ```env
+   VITE_API_URL=http://localhost:3000
+   ```
 
-4. Configure your environment variables in `.env`:
-```env
-VITE_API_BASE_URL=http://localhost:3000
-VITE_APP_TITLE=Posts Management
-```
-
-## Usage
+## 🚀 Running the Application
 
 ### Development Mode
 ```bash
 npm run dev
 ```
-This starts the development server with hot reload at `http://localhost:5173`
+Application runs on `http://localhost:5173`
 
 ### Build for Production
 ```bash
 npm run build
 ```
-Creates an optimized production build in the `dist` folder.
 
 ### Preview Production Build
 ```bash
 npm run preview
 ```
-Serves the production build locally for testing.
 
 ### Linting
 ```bash
 npm run lint
 ```
-Runs ESLint to check code quality and style.
+
+## 📱 Application Structure
+
+### Authentication Flow
+1. **Login/Signup**: Users can register or login with email/password
+2. **Google OAuth**: Alternative social login option
+3. **JWT Tokens**: Secure authentication with automatic token management
+4. **Protected Routes**: Dashboard access requires authentication
+
+### Dashboard Features
+- **Add Post**: Create new posts with title and content
+- **All Posts**: View and manage existing posts
+- **User Profile**: Display current user information
+- **Logout**: Secure session termination
+
+## 🎨 User Interface
+
+### Login Page
+- Clean, centered login form
+- Email and password validation
+- Google OAuth button
+- Link to signup page
+
+### Signup Page
+- User registration form
+- Name, email, and password fields
+- Client-side validation
+- Redirect to login after success
+
+### Dashboard
+- Navigation sidebar with menu options
+- Main content area for components
+- User information display
+- Responsive layout
+
+### Add Post
+- Form with title and content fields
+- Real-time validation feedback
+- Success/error message display
+- Automatic form reset on success
+
+### All Posts
+- List of user's posts
+- Edit and delete functionality
+- Responsive card layout
+- Empty state handling
+
+## 🔒 Authentication System
+
+### AuthContext
+Provides global authentication state management:
+- User information
+- Authentication status
+- Token management
+- Login/logout functions
+
+### AuthService
+Handles all API communication:
+- Login/signup requests
+- Token validation
+- Automatic token refresh
+- API request interceptors
+
+### Protected Routes
+- Route guards for authenticated pages
+- Automatic redirect to login
+- Persistent authentication state
+
+## 📡 API Integration
+
+### Configuration
+```javascript
+// config.js
+const config = {
+  API_URL: import.meta.env.VITE_API_URL || 'http://localhost:3001'
+};
+```
+
+### Request Interceptors
+- Automatic token attachment
+- Error handling for 401 responses
+- Redirect on authentication failure
+
+### Endpoints Used
+- `POST /login` - User authentication
+- `POST /signup` - User registration
+- `GET /profile` - User profile data
+- `GET /posts` - Fetch user posts
+- `POST /posts` - Create new post
+- `PUT /posts/:id` - Update post
+- `DELETE /posts/:id` - Delete post
+- `GET /auth/google` - Google OAuth initiation
+
+## ✅ Validation Rules
+
+### Login Form
+- **Email**: Valid email format required
+- **Password**: Minimum 6 characters
+
+### Signup Form
+- **Name**: Minimum 3 characters
+- **Email**: Valid email format
+- **Password**: Minimum 6 characters
+
+### Post Creation
+- **Title**: Minimum 3 characters, required
+- **Content**: Minimum 12 characters, required
+
+## 🎯 Component Architecture
+
+```
+src/
+├── components/
+│   ├── AddPost.jsx       # Post creation form
+│   ├── AllPosts.jsx      # Posts list and management
+│   ├── AuthCallback.jsx  # Google OAuth callback handler
+│   ├── Dashboard.jsx     # Main dashboard layout
+│   ├── Login.jsx         # Login form
+│   ├── ProtectedRoute.jsx # Route protection wrapper
+│   └── Signup.jsx        # Registration form
+├── contexts/
+│   └── AuthContext.jsx   # Global authentication state
+├── services/
+│   └── AuthService.js    # API communication service
+├── App.jsx               # Main application component
+├── App.css              # Global styles
+├── config.js            # Environment configuration
+└── main.jsx             # Application entry point
+```
+
+## 🚀 Deployment
 
 ### Vercel Deployment
-```bash
-npm run vercel-build
-```
-Builds the project specifically for Vercel deployment.
+The application is configured for Vercel deployment:
 
-## Project Structure
-
-```
-client/
-├── public/
-│   └── vite.svg          # Vite logo
-├── src/
-│   ├── assets/           # Static assets
-│   ├── components/       # Reusable React components
-│   ├── contexts/         # React context providers
-│   ├── services/         # API service functions
-│   ├── App.jsx           # Main application component
-│   ├── App.css           # Application styles
-│   ├── main.jsx          # Application entry point
-│   ├── index.css         # Global styles
-│   └── config.js         # Configuration settings
-├── dist/                 # Production build output
-├── index.html            # HTML template
-├── vite.config.js        # Vite configuration
-├── eslint.config.js      # ESLint configuration
-├── vercel.json           # Vercel deployment config
-└── package.json          # Dependencies and scripts
+```json
+// vercel.json
+{
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    }
+  ]
+}
 ```
 
-## Key Components
-
-### App Component (`src/App.jsx`)
-The main application component that handles routing and global state.
-
-### Configuration (`src/config.js`)
-Centralized configuration for API endpoints and application settings.
-
-### Services (`src/services/`)
-API service functions for communicating with the backend server.
-
-### Components (`src/components/`)
-Reusable UI components for the application interface.
-
-### Contexts (`src/contexts/`)
-React context providers for global state management.
-
-## API Integration
-
-The client communicates with the backend server through Axios HTTP requests. The base URL is configured in the environment variables.
-
-### Example API Usage
-```javascript
-import axios from 'axios';
-
-const api = axios.create({
-  baseURL: process.env.VITE_API_BASE_URL,
-  withCredentials: true
-});
-
-// Get all posts
-const posts = await api.get('/api/posts');
-
-// Create a new post
-const newPost = await api.post('/api/posts', {
-  title: 'My Post',
-  content: 'Post content'
-});
+### Build Configuration
+```json
+// package.json
+{
+  "scripts": {
+    "vercel-build": "vite build"
+  }
+}
 ```
 
-## Environment Variables
+### Environment Variables
+Set in deployment platform:
+- `VITE_API_URL`: Backend API URL
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `VITE_API_BASE_URL` | Backend API base URL | `http://localhost:3000` |
-| `VITE_APP_TITLE` | Application title | `Posts Management` |
+## 📸 Screenshots
 
-## Development Guidelines
+### Login Page
+![Login Page](screenshot/Screenshot%202025-10-29%20at%209.14.04%20AM.png)
 
-### Code Style
-- Use functional components with hooks
-- Follow React best practices
-- Use ESLint for code quality
-- Maintain consistent naming conventions
+### Signup Page
+![Signup Page](screenshot/Screenshot%202025-10-29%20at%209.14.31%20AM.png)
 
-### Component Structure
-```jsx
-import React from 'react';
-import './Component.css';
+### Dashboard - Add Post
+![Add Post](screenshot/Screenshot%202025-10-29%20at%209.14.44%20AM.png)
 
-const Component = ({ prop1, prop2 }) => {
-  // Component logic here
-  
-  return (
-    <div className="component">
-      {/* JSX content */}
-    </div>
-  );
-};
+### Dashboard - All Posts
+![All Posts](screenshot/Screenshot%202025-10-29%20at%209.14.50%20AM.png)
 
-export default Component;
-```
+### Post Creation Success
+![Post Success](screenshot/Screenshot%202025-10-29%20at%209.15.11%20AM.png)
 
-## Deployment
+### Posts List View
+![Posts List](screenshot/Screenshot%202025-10-29%20at%209.15.16%20AM.png)
 
-### Vercel (Recommended)
-The project includes a `vercel.json` configuration file for easy deployment:
+### Edit Post Modal
+![Edit Post](screenshot/Screenshot%202025-10-29%20at%209.15.52%20AM.png)
 
-1. Install Vercel CLI: `npm i -g vercel`
-2. Run: `vercel`
-3. Follow the prompts
+### Post Management
+![Post Management](screenshot/Screenshot%202025-10-29%20at%209.15.59%20AM.png)
 
-### Manual Deployment
-1. Build the project: `npm run build`
-2. Deploy the `dist` folder to your hosting provider
+### Delete Confirmation
+![Delete Confirmation](screenshot/Screenshot%202025-10-29%20at%209.16.11%20AM.png)
 
-## Browser Support
+### Updated Posts View
+![Updated Posts](screenshot/Screenshot%202025-10-29%20at%209.16.38%20AM.png)
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
+## 🔧 Development Tips
 
-## Performance Features
+### Hot Reload
+Vite provides instant hot module replacement for fast development.
 
-- **Vite**: Lightning-fast build tool with HMR
-- **Code Splitting**: Automatic code splitting for optimal loading
-- **Tree Shaking**: Removes unused code from bundles
-- **Asset Optimization**: Optimized images and assets
+### Error Handling
+- Network errors are caught and displayed to users
+- Form validation provides immediate feedback
+- Authentication errors redirect to login
 
-## Contributing
+### State Management
+- AuthContext provides centralized auth state
+- Local component state for form data
+- Custom events for cross-component communication
+
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
-3. Make your changes
-4. Run linting: `npm run lint`
-5. Test the build: `npm run build`
+3. Follow the existing code style
+4. Add appropriate error handling
+5. Test your changes thoroughly
 6. Submit a pull request
 
-## Troubleshooting
+## 📄 License
+
+This project is licensed under the terms specified in package.json.
+
+## 🆘 Troubleshooting
 
 ### Common Issues
 
-**Development server won't start:**
-- Check if port 5173 is available
-- Ensure Node.js version is 16 or higher
-- Clear node_modules and reinstall: `rm -rf node_modules && npm install`
+1. **API Connection**: Verify VITE_API_URL in .env file
+2. **Authentication**: Check if server is running and accessible
+3. **CORS Errors**: Ensure server CORS configuration includes client URL
+4. **Build Errors**: Clear node_modules and reinstall dependencies
 
-**API requests failing:**
-- Verify backend server is running
-- Check VITE_API_BASE_URL in .env file
-- Ensure CORS is properly configured on the backend
+### Debug Mode
+Enable debug logging by checking browser console for detailed error information.
 
-**Build errors:**
-- Run `npm run lint` to check for code issues
-- Ensure all dependencies are installed
-- Check for TypeScript errors if using TypeScript
-
-## License
-
-ISC License
+### Network Issues
+Use browser developer tools to inspect network requests and responses.
